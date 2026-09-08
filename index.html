@@ -136,7 +136,9 @@ main{min-height:60vh;padding-bottom:5rem}
 }
 .prose{max-width:var(--measure)}
 .prose p{margin:0 0 1.05rem}
-.lead{font-size:1.12rem;line-height:1.68;color:var(--ink-2)}
+.lead{font-size:1.12rem;line-height:1.68;color:var(--ink-2);text-wrap:pretty}
+.page-lead{max-width:min(100%,82ch);margin:0 0 2rem}
+p,dd,li,figcaption{text-wrap:pretty}
 
 /* ---------- hero (3D) ---------- */
 .hero3d{
@@ -2218,7 +2220,7 @@ function viewHome(){
 
 function viewResearch(){
   return pageHead(t("res.eyebrow"),t("res.title")) + `
-  <div class="prose"><p class="lead">${t("res.lead")}</p></div>
+  <p class="lead page-lead">${t("res.lead")}</p>
   ${RESEARCH.map(a=>`
     <section class="topic">
       <div class="rail">${t("home.area")} ${a.n}</div>
@@ -2361,7 +2363,7 @@ function viewNews(){
 function viewTeaching(){
   const total = TEACHING.reduce((a,x)=>a+x.courses.length,0);
   return pageHead(t("tea.eyebrow"),t("tea.title"),t("tea.count",{n:total})) + `
-  <p class="lead" style="max-width:var(--measure);margin:0 0 2rem">${t("tea.lead")}</p>
+  <p class="lead page-lead">${t("tea.lead")}</p>
   ` + TEACHING.map(x=>`
     <section class="term">
       <div class="t">${esc(T(x.term))}</div>
