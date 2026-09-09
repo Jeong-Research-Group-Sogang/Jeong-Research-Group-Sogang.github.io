@@ -458,7 +458,7 @@ li.pub .a{font-size:.85rem;color:var(--ink-2);line-height:1.5;margin:0 0 .22rem}
 li.pub .a b{font-weight:600;color:var(--ink)}
 li.pub .v{font-size:.82rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:.25rem .7rem;align-items:baseline}
 li.pub .v i{font-style:italic;color:var(--ink-2)}
-li.pub .doi{font-family:var(--ff-mono);font-size:.8rem;color:var(--accent);text-decoration:none}
+li.pub .doi{font-family:var(--ff-mono);font-size:.8rem;color:var(--accent);text-decoration:none;overflow-wrap:anywhere}
 li.pub .doi:hover{text-decoration:underline}
 .badge{
   font-family:var(--ff-mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;
@@ -629,6 +629,32 @@ footer.site a{color:var(--muted)}
 
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
+}
+
+/* ---------- mobile refinements ---------- */
+.cta-row{display:flex;flex-wrap:wrap;gap:.6rem .5rem;margin-top:.35rem}
+@media(max-width:640px){
+  /* header: wordmark + language button on the first row, nav on its own full-width row */
+  .masthead-in{gap:.4rem 1rem;min-height:0;padding-top:.35rem;padding-bottom:.45rem}
+  .wordmark{margin-right:auto}
+  .lang-btn{order:1;margin-left:0}
+  nav.primary{order:2;width:100%;margin-left:0;gap:0 .1rem;margin-top:.1rem}
+  nav.primary a{padding:.36rem .5rem;font-size:.86rem}
+  /* page heads: tighter gap below the title rule */
+  .page-head{padding:2.2rem 0 1.1rem;margin-bottom:1.5rem}
+  .page-head .count{padding-bottom:.1rem}
+  .section{padding:2rem 0}
+  /* people: compact row cards instead of full-width portraits */
+  .person{flex-direction:row;align-items:flex-start}
+  .person .portrait,.person .portrait-fallback{width:118px;flex:0 0 118px;aspect-ratio:1/1;align-self:flex-start}
+  .person-body{padding:.85rem .95rem 1rem;min-width:0}
+  .person dl{font-size:.82rem}
+  .lead-person{flex-direction:column}
+  .lead-person .portrait,.lead-person .portrait-fallback{width:100%;flex:none}
+  /* publications: narrower index column */
+  li.pub{grid-template-columns:2rem minmax(0,1fr);gap:.2rem .6rem}
+  /* contact: less air between the field blocks */
+  .contact-grid{gap:1.4rem}
 }
 </style>
 
@@ -2221,8 +2247,10 @@ function viewHome(){
       <div class="callout">
         <h3>${t("home.join")}</h3>
         <p>${t("home.join.p")}</p>
-        <a class="btn" href="mailto:hjeong@sogang.ac.kr">${t("home.email")}</a>
-        <a class="btn ghost" href="#/contact" style="margin-left:.4rem">${t("home.contact")}</a>
+        <div class="cta-row">
+          <a class="btn" href="mailto:hjeong@sogang.ac.kr">${t("home.email")}</a>
+          <a class="btn ghost" href="#/contact">${t("home.contact")}</a>
+        </div>
       </div>
       <figure class="campus">
         <img src="${CAMPUS}" alt="Sogang University campus in early summer: trees framing a view of the Albatross monument and the science buildings under a clear sky." loading="lazy">
