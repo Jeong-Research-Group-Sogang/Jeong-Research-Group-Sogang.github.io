@@ -474,8 +474,13 @@ li.pub .doi:hover{text-decoration:underline}
   color:var(--accent);padding-top:.2rem;
 }
 .news-month ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:.85rem}
-.news-month li{font-size:.92rem;color:var(--ink-2);line-height:1.55;max-width:70ch}
-.news-month a{color:var(--accent);text-decoration:none;font-family:var(--ff-mono);font-size:.8rem;word-break:break-all}
+/* News line-breaking rule: one em-based measure so English (~70 characters) and
+   Korean (~35 characters) get the same comfortable reading length, and balanced
+   wrapping so a short item never ends in a one-word stub line. */
+.news-month li{font-size:.92rem;color:var(--ink-2);line-height:1.58;max-width:36em;text-wrap:balance}
+.news-month a{display:block;width:fit-content;max-width:100%;margin-top:.3rem;
+  color:var(--accent);text-decoration:none;font-family:var(--ff-mono);font-size:.8rem;
+  word-break:normal;overflow-wrap:anywhere}
 .news-month a:hover{text-decoration:underline}
 
 sup{line-height:0;font-size:.72em}
@@ -640,6 +645,7 @@ footer.site a{color:var(--muted)}
   .lang-btn{order:1;margin-left:0}
   nav.primary{order:2;width:100%;margin-left:0;gap:0 .1rem;margin-top:.1rem}
   nav.primary a{padding:.36rem .5rem;font-size:.86rem}
+  html[lang="ko"] .wordmark .mark{font-size:1.2rem}
   /* page heads: tighter gap below the title rule */
   .page-head{padding:2.2rem 0 1.1rem;margin-bottom:1.5rem}
   .page-head .count{padding-bottom:.1rem}
@@ -828,7 +834,7 @@ const ALUMNI = [["Joohyeon Park", "Undergraduate, 2024\u20132026 \u00b7 now at A
 
 const PUBS = [
 {y:"Under review", a:"Ki-Yoon Park#, Taewook Kim#, Yongbin Han, Punnarao Manchi, Yoon-Ah Chae, Heonjae Jeong*, Hong-Joon Yoon*", t:"Decoupling Electrical and Mechanical Properties in Ion-Doped PVA for Triboelectric Nanogenerators", v:"", note:"# equally contributed"},
-{y:"Under review", a:"Joohyeon Park#, Seonwoo Choi#, Myeongjae Heo, Heonjae Jeong*", t:"Generative Inverse Design of Solid-State Fluoride-Ion Electrolytes in Data-Sparse Chemical Space", v:"", note:"# equally contributed"},
+{y:"Under review", a:"Joohyeon Park#, Seonwoo Choi#, Myeongjae Heo, Heonjae Jeong*", t:"Generative Inverse Design of Solid-State Fluoride-Ion Electrolyte Candidates in Data-Sparse Chemical Spaces", v:"", note:"# equally contributed"},
 {y:"Under review", a:"Jungsoo Lee, Seonwoo Choi, Myungho Choi, Kyung Joon Kim, Gwangyu Kim, Minseong Ko, Jaewoon Koo, Sangmin Yeo, Heonjae Jeong*, Gangtae Jin*", t:"Crystallographic-alignment-dependent reliability of monolayer WS₂ barriers for cobalt interconnects", v:""},
 {y:"Under review", a:"Inkyung Choi, Juyoung Han, Heonjae Jeong*", t:"A Gold NER Corpus for Fluoride-Ion Battery Literature: Toward an Ontology-Grounded Knowledge Graph", v:""},
 {y:"Under review", a:"Jaewoon Koo#, Gun-Young Yoon#, Jimin Park#, Jungsoo Lee, Kyungjoon Kim, Minseong Ko, Myeongjae Heo, Gwangyu Kim, Myungho Choi, Heonjae Jeong*, Gangtae Jin*", t:"Bonding-driven self-optimization of heterobilayer-passivated Cu–Cu interfaces for 3D integration", v:"", note:"# equally contributed"},
